@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 public class FileScanner{
     BufferedReader bufferedReader;
     /**
@@ -37,9 +38,20 @@ public class FileScanner{
     }
     /**
      * Reads a csv file to an array
-     * @return array with contents of csv
+     * @return a hybrid array with contents of csv
      */
-    public String[] readFileToArray(){
-
+    public ArrayList<String[]> readFileToArray(){
+        ArrayList<String[]> contents=new ArrayList<String[]>();
+        String a="";
+        try{
+            while((a=bufferedReader.readLine())!=null){
+                String[] tmp=a.split(",");
+                contents.add(tmp);
+            }
+            return contents;
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return new ArrayList<String[]>();
     }
 }
